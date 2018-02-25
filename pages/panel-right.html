@@ -1,0 +1,222 @@
+<template>
+		<div class="page">
+          <div class="navbar">
+            <div class="navbar-inner sliding">
+			<div class="left">
+			<a class="link panel-close">
+			  <i class="icon icon-back"></i>
+			  <span class="ios-only">Back</span>
+			</a>
+			</div>
+              <div class="title">Hello Warrior</div>
+            </div>
+          </div>
+          <div class="page-content">
+
+				<div class="list no-hairlines">
+				  <ul>
+					<li>
+					  <a class="item-content">
+						<div class="item-media"><img class="lazy" data-src="{{image}}" width="44" height="44"/></div>
+						<div class="item-inner">
+						  <div class="item-title">{{name}}<div class="item-footer">{{designation}}</div></div>
+						</div>
+					  </a>
+					</li>
+				</ul>
+				</div>
+
+				<div class="list">
+				  <ul>
+					<li>
+					  <a data-goto="/account/" class="panel-close item-link item-content icon-account">
+						<div class="item-media"><i class="icon material-icons md-only">account_circle</i><i class="icon f7-icons ios-only">person_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Account</div> 
+						</div>
+					  </a>
+					</li>
+										<li>
+					  <a data-goto="/tasks/" class="panel-close item-link item-content icon-tasks">
+						<div class="item-media"><i class="icon material-icons md-only">business_center</i><i class="icon f7-icons ios-only">briefcase_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Tasks</div>
+						  <div class="item-after"></div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/notifications/" class="panel-close item-link item-content icon-notifications">
+						<div class="item-media"><i class="icon material-icons md-only">notifications</i><i class="icon f7-icons ios-only">bell_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Notifications</div> 
+						  <div class="item-after"></div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/settings/" class="panel-close item-link item-content icon-settings">
+						<div class="item-media"><i class="icon material-icons md-only">settings</i><i class="icon f7-icons ios-only">bolt_round_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Settings</div> 
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/about/" class="panel-close item-link item-content icon-about">
+						<div class="item-media"><i class="icon material-icons md-only">info</i><i class="icon f7-icons ios-only">info_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">About</div> 
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/help/" class="panel-close item-link item-content icon-help">
+						<div class="item-media"><i class="icon material-icons md-only">help</i><i class="icon f7-icons ios-only">help_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Help</div> 
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/passcode/?logout=true" class="panel-close item-link item-content icon-logout">
+						<div class="item-media"><i class="icon material-icons md-only">lock</i><i class="icon f7-icons ios-only">lock_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Log out</div> 
+						</div>
+					  </a>
+					</li>
+				</div>
+			
+			<div class="block"><p>{{quote}}</p><small>&#8212; {{written_by}}</small></div>
+
+          </div>
+        </div>
+</template>
+
+<style>
+.ios .panel-right .navbar-hidden{
+	transform: none!important;
+}
+
+.ios .panel-backdrop{
+	background: rgba(255, 255, 255, 0.67)!important;
+}
+
+.panel-right .list{
+	margin: 0!important;
+}
+
+.panel-right .list.no-hairlines{
+	padding: 6px 0!important;
+}
+
+.panel-right .list.no-hairlines a{
+	cursor: default;
+}
+
+.ios .panel-right .list.no-hairlines ul{
+	background: none!important;
+}
+
+.panel-right .list.no-hairlines .item-title {
+    font-size: 16px;
+	color: #212121;
+}
+
+.panel-right .ios .list .item-media i+i,
+.panel-right .ios .list .item-media i+img {
+	margin-left:0;
+	font-size: 20px;
+	width: 20px;
+    height: 20px;
+}
+
+.panel-right img{
+	border-radius: 44px!important;
+	-moz-box-shadow: 0px 0px 1px 0px #000;
+    -webkit-box-shadow: 0px 0px 1px 0px #000;
+    box-shadow: 0px 0px 1px 0px #000;
+}
+
+.panel-right .icon-tasks .md-only{
+	margin-top: -1px;
+}
+
+.panel-right .icon-tasks .ios-only{
+	font-size: 19px;
+    width: 19px;
+    height: 19px;
+}
+
+.panel-right .icon-notifications .md-only{
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+}
+
+.ios .panel-right:after{
+	background:none!important;
+	width:0!important;
+	border-right: 1px solid #ddd!important;
+	z-index: 9999;
+}
+
+.panel-right.panel-visible-by-breakpoint:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
+  content: '';
+  z-index: 6000;
+}
+
+.panel-right.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="right"] {
+  display: none;
+}
+
+.ios .panel-right:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
+.ios .panel-right:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
+  content: '';
+  z-index: 6000;
+}
+</style>
+
+
+<script>
+return	{
+	data: function () {
+    return {
+		name: app.data.warrior.name,
+		designation: app.data.warrior.designation,
+		image: app.data.config.file_server + 'user/' + app.data.warrior.email + '.jpg',
+		quote: app.data.quote.quote,
+		written_by: app.data.quote.written_by,
+		}
+	},
+	on: {
+	  pageInit: function(e, page) {
+		$('.panel-right').on('panel:open', function () {
+			unreadTasks = 0;
+			unreadNotifications = 0;
+			try{
+				unreadTasks = app.form.getFormData('jcp_plus__tasks').filter(function(a){return a.state=='Unread'}).length;
+				unreadNotifications = app.form.getFormData('jcp_plus__notifications').filter(function(a){return a.state=='Unread'}).length;
+			}catch(e){}
+			if(unreadTasks>0){$('.panel-right .icon-tasks .item-after').html('<span class="badge color-'+app.data.settings.color+'">'+app.form.getFormData('jcp_plus__tasks').length+'</span>');}
+			if(unreadNotifications>0){$('.panel-right .icon-notifications .item-after').html('<span class="badge color-'+app.data.settings.color+'">'+app.form.getFormData('jcp_plus__notifications').length+'</span>');}
+		});
+	  },
+	  pageAfterIn: function(e, page) {
+      },
+	},
+}
+</script>

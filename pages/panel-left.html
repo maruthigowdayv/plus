@@ -1,0 +1,272 @@
+<template>
+		<div class="page">
+        
+		<div class="navbar">
+            
+			<div class="navbar-inner sliding">
+			
+			<div class="left split-off">
+			<a class="link panel-close">
+			  <i class="icon icon-back"></i>
+			  <span class="ios-only">Back</span>
+			</a>
+			</div>
+			<div class="title split-off">Menu</div>
+
+			<div class="left split-on">
+				<a class="link">
+                <i class="material-icons">add_shopping_cart</i>
+               <span>Plus</span>
+            </a>
+			</div>
+			 
+            </div>
+
+		</div>
+
+        <div class="page-content" id="#panel-left">
+
+				<div class="list no-hairlines">
+				  <ul>
+					<li>
+					  <a class="item-content">
+						<div class="item-media"><img src="{{image}}" width="44" height="44"/></div>
+						<div class="item-inner">
+						  <div class="item-title">{{name}}<div class="item-footer">{{designation}}</div></div>
+						</div>
+					  </a>
+					</li>
+				</ul>
+				</div>
+
+				<div class="list">
+				  <ul>
+					<li>
+					  <a data-goto="/account/" data-view=".view-center" class="panel-close item-link item-content icon-account">
+						<div class="item-media"><i class="icon material-icons md-only">account_circle</i><i class="icon f7-icons ios-only">person_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Account</div> 
+						</div>
+					  </a>
+					</li>
+										<li>
+					  <a data-goto="/tasks/" data-view=".view-center" class="panel-close item-link item-content icon-tasks">
+						<div class="item-media"><i class="icon material-icons md-only">assignment</i><i class="icon f7-icons ios-only">list_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Tasks</div>
+						  <div class="item-after">
+							<span class="badge color-green" v-html="vue_tasks_count"></span>
+						  </div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/dashboards/" data-view=".view-center" class="panel-close item-link item-content icon-dashboards">
+						<div class="item-media"><i class="icon material-icons md-only">insert_chart</i><i class="icon f7-icons ios-only">graph_square_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Dashboards</div> 
+						  <div class="item-after"></div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/modules/" data-view=".view-center" class="panel-close item-link item-content icon-modules">
+						<div class="item-media"><i class="icon material-icons md-only">business_center</i><i class="icon f7-icons ios-only">briefcase_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Modules</div> 
+						  <div class="item-after"></div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/notifications/" data-view=".view-center" class="panel-close item-link item-content icon-notifications">
+						<div class="item-media"><i class="icon material-icons md-only">notifications</i><i class="icon f7-icons ios-only">bell_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Notifications</div> 
+						  <div class="item-after"></div>
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/settings/" data-view=".view-center" class="panel-close item-link item-content icon-settings">
+						<div class="item-media"><i class="icon material-icons md-only">settings</i><i class="icon f7-icons ios-only">bolt_round_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Settings</div> 
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/help/" data-view=".view-center" class="panel-close item-link item-content icon-help">
+						<div class="item-media"><i class="icon material-icons md-only">help</i><i class="icon f7-icons ios-only">help_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">Help</div> 
+						</div>
+					  </a>
+					</li>
+					<li>
+					  <a data-goto="/about/" data-view=".view-center" class="panel-close item-link item-content icon-about">
+						<div class="item-media"><i class="icon material-icons md-only">info</i><i class="icon f7-icons ios-only">info_fill</i></div>
+						<div class="item-inner">
+						  <div class="item-title">About</div> 
+						</div>
+					  </a>
+					</li>
+					</div>
+			
+			<div class="block"><p>{{quote}}</p><small>&#8212; {{written_by}}</small></div>
+
+          </div>
+        </div>
+</template>
+
+<style>
+
+.ios .panel-left .navbar .title {
+	left: 7px!important;
+	line-height: 1.5;
+}
+
+.ios .panel-left.panel-active .navbar .title {
+	left: -75px!important;
+}
+
+.ios .panel-left .navbar-hidden {
+	transform: none!important;
+}
+
+.ios .panel-backdrop {
+	background: rgba(255, 255, 255, 0.67)!important;
+}
+
+.panel-left .list{
+	margin: 0!important;
+}
+
+.panel-left .list.no-hairlines{
+	padding: 6px 0!important;
+}
+
+.panel-left .list.no-hairlines a{
+	cursor: default;
+}
+
+.ios .panel-left .list.no-hairlines ul{
+	background: none!important;
+}
+
+.panel-left .list.no-hairlines .item-title {
+    font-size: 16px;
+	color: #212121;
+}
+
+.ios .panel-left .list .item-media i+i,
+.ios .panel-left .list .item-media i+img {
+	margin-left:0;
+	font-size: 20px;
+	width: 20px;
+    height: 20px;
+}
+
+.panel-left img{
+	border-radius: 44px!important;
+	-moz-box-shadow: 0px 0px 2px 0px #000;
+    -webkit-box-shadow: 0px 0px 2px 0px #000;
+    box-shadow: 0px 0px 2px 0px #000;
+}
+
+.panel-left .icon-modules .md-only, .panel-left .icon-logout .md-only{
+	margin-top: -1px;
+}
+
+.panel-left .icon-tasks .ios-only {
+    font-size: 19px;
+    height: 19px;
+    width: 19px;
+}
+
+.panel-left .icon-logout .ios-only{
+	margin-top: -2px;
+}
+
+.panel-left .icon-modules .ios-only{
+	font-size: 19px;
+    width: 19px;
+    height: 19px;
+	overflow:visible!important;
+}
+
+.panel-left .icon-notifications .md-only{
+    font-size: 26px;
+    width: 26px;
+    height: 26px;
+}
+
+.ios .panel-left:after{
+	background:none!important;
+	width:0!important;
+	border-right: 1px solid #ddd!important;
+	z-index: 9999;
+}
+
+.panel-left.panel-visible-by-breakpoint ~ .view .navbar .panel-open[data-panel="left"] {
+  display: none;
+}
+
+.ios .panel-left:not(.panel-visible-by-breakpoint).panel-active ~ .view-main:before,
+.ios .panel-left:not(.panel-visible-by-breakpoint).panel-closing ~ .view-main:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  background: rgba(0,0,0,0.1);
+  content: '';
+  z-index: 6000;
+}
+</style>
+
+<script>
+return	{
+	data: function () {
+    return {
+		name: app.data.warrior.name,
+		designation: app.data.warrior.designation,
+		image: app.data.config.file_server + 'user/' + app.data.warrior.email + '.jpg',
+		quote: app.data.quote.quote,
+		written_by: app.data.quote.written_by,
+		}
+	},
+	on: {
+	  pageInit: function(e, page) {
+		
+		$('.panel-left').on('panel:open', function () {
+			unreadTasks = 0;
+			unreadNotifications = 0;
+			try{
+				unreadTasks = app.form.getFormData('tasks').filter(function(a){return a.state=='Unread'}).length;
+				unreadNotifications = app.form.getFormData('notifications').filter(function(a){return a.state=='Unread'}).length;
+			}catch(e){}
+			if(unreadTasks>0){$('.panel-left .icon-tasks .item-after').html('<span class="badge color-'+app.data.settings.color+'">'+app.form.getFormData('tasks').length+'</span>');}
+			if(unreadNotifications>0){$('.panel-left .icon-notifications .item-after').html('<span class="badge color-'+app.data.settings.color+'">'+app.form.getFormData('notifications').length+'</span>');}
+		});
+	  },
+	  pageAfterIn: function(e, page) {
+	  
+			vue_tasks_count = app.form.getFormData('tasks').filter(function(a){return a.state=='Unread'}).length;
+
+			setInterval(function(){vue_tasks_count = app.form.getFormData('tasks').filter(function(a){return a.state=='Unread'}).length;console.log('vue_tasks_count'+vue_tasks_count)},1000)
+
+			var vue_app = new Vue({
+			  el: '.panel-left',
+			  data: {
+				vue_tasks_count: vue_tasks_count,
+			  }
+			})
+
+      },
+	},
+	methods: {
+		
+	},
+}
+</script>

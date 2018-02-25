@@ -1,0 +1,78 @@
+<template>
+	  <div class="page dashboards">
+        <div class="navbar dashboards">
+          <div class="navbar-inner">
+            <div class="left split-off">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+			<div class="title sliding  split-off">PLUS</div>
+			
+					<div class="left split-on">
+			<a class="link">
+				<i class="material-icons">equalizer</i>
+				<span>Dashboards</span>
+            </a>
+		</div>            
+			
+          </div>
+        </div>
+        <div class="page-content">
+          <div class="list searchbar-hide-on-search">
+            <ul>
+              <li>
+                <a class="item-content item-link" href="/about/">
+                  <div class="item-media"><i class="icon icon-f7"></i></div>
+                  <div class="item-inner">
+                    <div class="item-title">About PLUS</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="block-title searchbar-found">Components</div>
+          <div class="list components-list searchbar-found">
+            <ul>
+              <li>
+                <a class="item-content item-link" href="/accordion/">
+                  <div class="item-media"><i class="icon icon-f7"></i></div>
+                  <div class="item-inner">
+                    <div class="item-title">What's New</div>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+		 
+        </div>
+      </div>
+</template>
+
+<style scoped>
+
+</style>
+
+<script>
+var state = '';
+return	{
+    methods: {
+		aaa: function(key){
+		},
+	},
+	on: {
+		pageInit: function(e, page){
+			
+		},
+		pageAfterIn: function(e, page) {
+		},
+	  pageBeforeRemove: function(e, page) {
+		if(app.device.name=='browser'){
+			//$('#app').attr('style', 'border-color:auto!important');
+			//$('#app').removeClass('splash-screen-border');
+		}
+      },
+	},
+}
+</script>

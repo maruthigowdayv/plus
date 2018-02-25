@@ -1,0 +1,249 @@
+<template>
+	<div class="page">
+		<div class="navbar">
+			<div class="navbar-inner sliding">
+				<div class="left">
+					<a href="#" class="link back">
+						<i class="icon icon-back"></i>
+						<span class="ios-only">Back</span>
+					</a>
+				</div>
+				<div class="title">Account</div>
+				<div class="right"><a class="link icon-only" @click="logout"><i class="icon material-icons">exit_to_app</i></a></div>
+			</div>
+		</div>
+		<div class="page-content">
+						
+			<div class="block">
+				<div class="row align-items-center justify-content-space-evenly">
+					{{button_left}}
+					<div class="warrior-image" style="background-image:url({{image}})"></div>
+					{{button_right}}
+				</div>
+				<div class="text-align-center">
+					<div class="name">{{name}}</div>
+					<div class="designation-and-team">{{designation}}, {{team}}</div>
+				</div>
+				
+				
+
+			</div>
+
+				<div class="list no-hairlines-md">
+				<ul>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">SAN</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{san}}</textarea> <i @click="showSanInfo" class="material-icons md-only text-color-{{color}}">info_outline</i><i @click="showSanInfo" class="f7-icons ios-only text-color-{{color}}">info</i> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">Department</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{department}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">Reporting Manager</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{reporting_to_name}}</textarea> <i data-action-get-warrior="{{reporting_to_email}}" class="material-icons md-only text-color-{{color}}">info_outline</i><i data-action-get-warrior="{{reporting_to_email}}" class="f7-icons ios-only text-color-{{color}}">info</i> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">Workstation</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{workstation}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">JCP+ Access Level</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{access_level}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">JCP+ Access Mapping</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{access_modules}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">Active Device Stats</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{active_devices}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">Latest Login</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{last_seen}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">About Me</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{about_me}}</textarea> </div> </div> </li>
+					<li class="item-content item-input"> <div class="item-inner"> <div class="item-title item-label">My Golden Rule</div> <div class="item-input-wrap"> <textarea class="resizable" readonly>{{my_golden_rule}}</textarea> </div> </div> </li>
+				</ul>
+				</div>
+
+		</div>
+	</div>
+</template>
+
+<style scoped>
+
+	.item-label{color:rgba(0,0,0,.65)!important;}
+	textarea{cursor:default;overflow:hidden;}
+	textarea::selection { background: transparent; }
+	textarea::-moz-selection { background: transparent;}
+
+	.item-input-focused .item-input-wrap:after {
+		-webkit-transform: scaleY(1)!important;
+		transform: scaleY(1)!important;
+		background-color: rgba(0,0,0,.12)!important;
+	}
+
+	.warrior-image {
+		width:160px;
+		height:160px;
+	}
+	
+	.block i{
+		font-size: 26px;
+		padding: 13px;
+		color: #fff;
+	}
+	
+	.block a{
+		border-radius: 50%;
+	}
+	
+	.name{
+		margin: 15px 0 4px 0;
+		color: #000;
+		font-size: 20px;
+	}
+	
+	.designation-and-team{
+		margin: 0 0 10px 0;
+		color: grey;
+		font-size: 16px;
+	}
+	
+	.item-input-wrap i{
+		display: inline-block;
+		position: absolute;
+		right: -2px;
+		bottom: 8px;
+		cursor: pointer;
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+	}
+	
+</style>
+
+<script>
+
+button_skype = '<a @click="skypeCall" class="external bg-color-'+app.data.settings.color+'"><i class="material-icons md-only">call</i><i class="f7-icons ios-only">phone_fill</i></a>';
+button_call = '<a @click="phoneCall" class="external bg-color-'+app.data.settings.color+'"><i class="material-icons md-only">call</i><i class="f7-icons ios-only">phone_fill</i></a>';
+button_sms = '<a @click="phoneSMS" class="external bg-color-'+app.data.settings.color+'"><i class="material-icons md-only">sms</i><i class="f7-icons ios-only">compose</i></a>';
+button_whatsapp = '<a @click="whatsappMessage" class="external bg-color-'+app.data.settings.color+'"><i class="material-icons md-only">chat</i><i class="f7-icons ios-only">chat_fill</i></a>';
+button_email = '<a @click="sendEmail" class="external bg-color-'+app.data.settings.color+'"><i class="material-icons md-only">email</i><i class="f7-icons ios-only">email</i></a>';
+
+theme_name = app.theme;
+device_name = app.device.name;
+contact_preference = app.data.settings.contact_preference;
+file_server = app.data.config.file_server;
+
+return	{
+	data: function () {
+        return {
+		  color: app.data.settings.color,
+		  id: app.data.warrior.id,
+          san: app.data.warrior.san,
+          name: app.data.warrior.name,
+		  image: file_server+'user/'+app.data.warrior.email+'.jpg',
+          designation: app.data.warrior.designation,
+		  team: app.data.warrior.team.split('>')[2]+' Team',
+		  department: app.data.warrior.team.split('>')[0] + ' &#187; ' + app.data.warrior.team.split('>')[1],
+		  workstation: app.data.warrior.workstation,
+		  email: app.data.warrior.email,
+		  phone: app.data.warrior.phone,
+		  reporting_to_name: app.data.warrior.reporting_to_name,
+		  reporting_to_email: app.data.warrior.reporting_to_email,
+		  access_level: app.data.warrior.access_level,
+		  access_modules: function(){
+				all_modules = app.data.warrior.access_modules.split('\n');
+				my_modules = '';
+				for(i=0;i<all_modules.length;i++){
+					if(all_modules[i].substring(0,1)=='+'){my_modules += '&#9745; '+all_modules[i].substring(1).split('|')[1]+'\n'}
+					else{my_modules += '&#9746; '+all_modules[i].substring(1).split('|')[1]+'\n'}
+				}
+				return my_modules.slice(0,-1);
+			},
+		  about_me: app.data.warrior.about_me,
+		  my_golden_rule: app.data.warrior.my_golden_rule,
+		  active_devices: app.data.warrior.active_devices.replace(/\|/g, '\n'),
+		  last_seen: app.data.warrior.last_seen,
+		  button_left: function(){
+			html_return = '';
+			if(device_name=='browser'){
+				html_return = button_skype;
+			} else {
+				html_return = window['button_'+contact_preference.split('+')[0]];
+			}
+			return html_return;
+		  },
+		  button_right: function(){
+			html_return = '';
+			if(device_name=='browser'){
+				html_return = button_email;
+			} else {
+				html_return = window['button_'+contact_preference.split('+')[1]];
+			}
+			return html_return;
+		  },
+		  tasks: app.data.tasks,
+        }
+    },
+	on: {
+		pageInit: function(){
+			initialSlide = 0;
+			initialScroll = '';
+			if(this.$route.query.goto){initialSlide=this.$route.query.goto}
+			if(this.$route.query.focus){initialScroll=this.$route.query.focus}
+			
+var swiper = new Swiper('.swiper-container', {
+	  initialSlide: initialSlide,
+      autoHeight: true,
+      spaceBetween: 20,
+	  mousewheel: true,
+      keyboard: {
+        enabled: true,
+      },
+	  pagination: {
+        el: '.segmented',
+        clickable: true,
+		renderBullet: function (index, className) {
+			label_0 = 'Profile';
+			label_1 = 'Tasks';
+			label_2 = 'Notifications';
+			return '<button class="button button-outline bg-color-white ' +className+'">'+window['label_'+index]+'</button>';
+        },
+      },
+	  on: {
+		init: function(){
+			setTimeout(function(){
+			swiper.updateAutoHeight();
+			$('.swiper-pagination-bullet-active').removeClass('bg-color-white');
+			if(initialScroll){
+				$('.page-content').scrollTop( $('.'+initialScroll).offset().top - 234 , 0)
+				$('.'+initialScroll).addClass('highlight');
+			}
+			}, 1);
+		},
+		slideChange: function () {
+			$('.swiper-pagination-bullet').addClass('bg-color-white');
+			$('.swiper-pagination-bullet-active').removeClass('bg-color-white');
+		},
+		resize: function(){
+			swiper.updateSize();
+		},
+	  },
+    });
+		},
+	},
+    methods: {
+		skypeCall: function(){
+			window.open('sip:'+app.data.warrior.email,'_self');
+		},
+		phoneCall: function(){
+			window.open('tel:'+app.data.warrior.phone,'_self');
+		},
+		phoneSMS: function(){
+			window.open('sms:'+app.data.warrior.phone+'&body=SMS Default Text Goes Here','_self');
+		},
+		whatsappMessage: function(){
+			window.open('https://api.whatsapp.com/send?phone='+app.data.warrior.phone+'&text=I\'m%20interested%20in%20your%20car%20for%20sale','_self');
+		},
+		sendEmail: function(){
+			window.open('mailto:'+app.data.warrior.email+'?Subject=Hello%20again','_self');
+		},
+		showSanInfo: function(){
+			app.dialog.alert('SAN is visible only to you.', 'Yo!');
+		},
+		showReportingManager: function(){
+			this.$root.get_warrior(this.$app.views.current.name,app.data.warrior.reporting_to_name,app.data.warrior.reporting_to_email);
+		},
+		logout: function(){
+			app.dialog.confirm('Are you sure you want to logout?', 'Confirmation', function () {
+				$('.splash-screen').show();
+				app.toast.close();
+				$('.panel').removeClass('panel-visible-by-breakpoint');
+				$('.view-left .page').remove(); $('.view-main .page').remove(); $('.view-right .page').remove();
+				localStorage.clear();app.data = [];app.form.data = [];
+				setTimeout(function(){$('.splash-screen').hide();$('.view-passcode').show();},1234);
+			});
+		}
+	},
+  }
+</script>

@@ -1,0 +1,80 @@
+<template>
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Help Videos</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="block-title">Passcode, Login & Account Management</div>
+	
+	<div class="list">
+		<ul>
+			<li>
+				<a href="#" class="item-link item-content video" data-contributor="Maruthi Gowda" data-video="maruthi-gowda">
+					<div class="item-inner">
+						<div class="item-title">What's passcode and why is it required?</div>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="#" class="item-link item-content video" data-contributor="Nitesh S U" data-video="nitesh-s-u">
+					<div class="item-inner">
+						<div class="item-title">What's passcode and why is it required?</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+	
+  </div>
+</div>
+</template>
+
+<style scoped>
+.item-title {
+    white-space: normal;
+}
+</style>
+
+<script>
+	return{
+		on: {
+			pageInit: function(){
+				$('.video.item-link').click(function(){
+					var self = this;
+					if (!self.popup) {
+					  self.popup = app.popup.create({
+						content: '\
+						  <div class="popup" style="width: 100%; margin: 0; top: 0; left: 0; overflow: hidden;text-align:center;height:100%;">\
+							<div class="page">\
+							  <div class="navbar">\
+								<div class="navbar-inner">\
+								  <div class="title">'+$(this).text()+'<span class="subtitle"><small>by</small> '+$(this).attr('data-contributor')+'</span></div>\
+								  <div class="right"><a href="#" class="link popup-close"><i class="material-icons md-only">close</i><i class="f7-icons ios-only">close</i></a></div>\
+								</div>\
+							  </div>\
+							  <div class="page-content" style="overflow: hidden;">\
+									<video poster="'+app.data.config.file_server+'help/'+$(this).attr('data-video')+'.png" autoplay="" style="height:'+($('#app').height() - $('.navbar').height() - 16)+'px!important" controls controlsList="nodownload"><source src="'+app.data.config.file_server+'help/'+$(this).attr('data-video')+'.mp4" type="video/mp4"></video>\
+							  </div>\
+							</div>\
+						  </div>\
+						'
+					  });
+					}
+					self.popup.open();					
+				});
+			},
+			pageBeforeRemove: function () {
+				var self = this;
+				if (self.popup) self.popup.destroy();
+			},
+		},
+	}
+</script>

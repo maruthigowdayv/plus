@@ -1,0 +1,105 @@
+<template>
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Get Help</div>
+    </div>
+  </div>
+  <div class="page-content form">
+  
+    <p class="block">In case you couldn't find answer to your question or you are facing any technical issue, fill in the form below to get help from PLUS support team.</p>
+
+	<div class="list no-hairlines-md">
+      <ul>
+        <li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">account_circle</i>
+            <i class="icon f7-icons ios-only">person_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Employee name</div>
+            <div class="item-input-wrap">
+			  <input id="name" type="text" value="" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+            </div>
+          </div>
+        </li>
+		<li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">mail</i>
+			<i class="icon f7-icons ios-only">email_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Email address</div>
+            <div class="item-input-wrap">
+			  <input id="email" type="email" value="" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">help</i>
+            <i class="icon f7-icons ios-only">help_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Describe your issue</div>
+            <div class="item-input-wrap">
+              <textarea id="issue" class="resizable" placeholder=""></textarea>
+            </div>
+          </div>
+        </li>
+		</ul>
+    </div>
+
+	<div class="fab fab-right-bottom">
+    <a @click="validateSubmitForm" class="submit">
+		<div class="preloader color-white"></div>
+		<i class="icon material-icons md-only">send</i>
+		<i class="icon f7-icons ios-only">paper_plane_fill</i>
+    </a>
+	</div>
+	
+  </div>
+</div>
+</template>
+
+<style scoped>
+  .preloader {
+		width: 30px;
+		height: 30px;
+		background-size: 30px 30px;
+		background-position: center center;
+	}
+</style>
+
+<script>
+  return {
+	on: {
+		pageInit: function(){
+			//
+		},
+		pageAfterIn: function(e, page) {
+			$('#name').focus();
+		}
+	},
+    methods: {
+      validateSubmitForm: function () {
+		var name = $("#name").val().trim();
+		var email = $("#email").val().trim().toLowerCase();
+		var issue = $("#issue").val().trim();
+		if(name==""){app.dialog.alert('Please enter your name.', 'Yo!',function(){$("#name").focus()});return false;}
+		if(email==""){app.dialog.alert('Please enter your email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(email.substr(email.length - 8)!="@jcp.com"){app.dialog.alert('Please enter your xxxx@jcp.com email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(email=="xxxx@jcp.com"){app.dialog.alert('Please enter a valid email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(issue==""){app.dialog.alert('Please describe your issue.', 'Yo!',function(){$("#issue").focus()});return false;}
+		if(issue.length<8){app.dialog.alert('Please provide a valid issue description.', 'Yo!',function(){$("#issue").focus()});return false;}
+		http_api__post('form', {todo: 'create_task', assigned_by_name: name, assigned_by_email: email, title: name + ' requested passcode assistance', todos: issue, success_todo: 'alert_goto', success_todo_title: 'Thank you!', success_todo_message: 'We have received your support request. Help is on the way!', success_todo_goto: '/passcode/assistance/'});
+      },
+    },
+  }
+</script>

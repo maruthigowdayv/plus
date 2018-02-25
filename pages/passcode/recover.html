@@ -1,0 +1,106 @@
+<template>
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">Recover Passcode</div>
+    </div>
+  </div>
+  <div class="page-content form">
+
+	<p class="block">Fill in the form below to submit your passcode recovery request.</p>
+
+	<div class="list no-hairlines-md">
+      <ul>
+        <li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">account_circle</i>
+            <i class="icon f7-icons ios-only">person_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Employee number</div>
+            <div class="item-input-wrap">
+			  <input id="san" type="number" value="" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+		<li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">mail</i>
+			<i class="icon f7-icons ios-only">email_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Email address</div>
+            <div class="item-input-wrap">
+			  <input id="email" type="email" value="" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <li class="item-content item-input">
+          <div class="item-media">
+			<i class="icon material-icons md-only">phone_in_talk</i>
+            <i class="icon f7-icons ios-only">phone_round_fill</i>
+          </div>
+          <div class="item-inner">
+            <div class="item-title item-floating-label">Phone number</div>
+            <div class="item-input-wrap">
+              <input id="phone" type="number" value="" placeholder="" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+		</ul>
+    </div>
+
+	<div class="fab fab-right-bottom">
+    <a @click="validateSubmitForm" class="submit">
+		<div class="preloader color-white"></div>
+		<i class="icon material-icons md-only">lock_open</i>
+		<i class="icon f7-icons ios-only">unlock</i>
+    </a>
+	</div>
+	
+  </div>
+</div>
+</template>
+
+<style scoped>
+  .preloader {
+    width: 30px;
+    height: 30px;
+	background-size: 30px 30px;
+	background-position: center center;
+  }
+</style>
+
+<script>
+  return {
+  	on: {
+		pageAfterIn: function(e, page) {
+			$("#san").focus();
+		},
+	},
+    methods: {
+      validateSubmitForm: function () {
+		var san = $("#san").val().trim();
+		var email = $("#email").val().trim().toLowerCase();
+		var phone = $("#phone").val().trim();
+		if(san==""){app.dialog.alert('Please enter your employee number.', 'Yo!',function(){$("#san").focus()});return false;}
+		if(san.length < 9 || san.substr(0, 5) != "88900"){app.dialog.alert('Please enter your 88900XXXX employee number.', 'Yo!',function(){$("#san").focus()});return false;}	
+		if(email==""){app.dialog.alert('Please enter your email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(email.substr(email.length - 8)!="@jcp.com"){app.dialog.alert('Please enter your xxxx@jcp.com email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(email=="xxxx@jcp.com"){app.dialog.alert('Please enter a valid email address.', 'Yo!',function(){$("#email").focus()});return false;}
+		if(phone==""){app.dialog.alert('Please enter your phone number.', 'Yo!',function(){$("#phone").focus()});return false;}
+		if(phone.length<10){app.dialog.alert('Please enter a valid phone number.', 'Yo!',function(){$("#phone").focus()});return false;}
+		http_api__post('form', {todo: 'recover_passcode', san: san, email: email, phone: phone});
+      },
+    },
+  }
+</script>

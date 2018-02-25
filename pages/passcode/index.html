@@ -1,0 +1,445 @@
+<template>
+
+    <div class="page">
+
+		<div class="page-content display-flex align-items-center">
+
+			<div class="user">
+
+				<div class="block row align-items-center justify-content-space-between">
+					<a class="bg-color-red login-screen-open" data-login-screen=".login-screen-1"><i class="material-icons">accessibility</i></a>
+					<div class="warrior-image" style="background-image: url(https://www.jcpenney.tech/file/user/{{user_email}}.jpg);"></div>
+					<a class="bg-color-red login-screen-open" data-login-screen=".login-screen-2"><i class="material-icons">highlight</i></a>
+				</div>
+
+				<div class="text-align-center">
+						<div class="user-name">{{user_name}}<br><small>Work at ease and do more with less</small></div>
+						<div class="user-cta-text">Enter your passcode</div>
+						<div class="user-cta-input">○○○○○○</div>
+				</div>
+
+				<div class="block keypad">
+					<div class="row">
+						<a class="button col-33 key">1</a>
+						<a class="button col-33 key border">2</a>
+						<a class="button col-33 key">3</a>
+					</div>
+					<div class="row">
+						<a class="button col-33 key">4</a>
+						<a class="button col-33 key border">5</a>
+						<a class="button col-33 key">6</a>
+					</div>
+					<div class="row">
+						<a class="button col-33 key">7</a>
+						<a class="button col-33 key border">8</a>
+						<a class="button col-33 key">9</a>
+					</div>
+					<div class="row">
+						<a class="button col-33" @click="showKeyboardInfo()"><i class="material-icons" style="font-size:28px;">keyboard</i></a>
+						<a class="button col-33 key border">0</a>
+						<a class="button col-33" @click="deleteKey()"><i class="material-icons">backspace</i></a>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="login-screen login-screen-1">
+				<div class="view view-init" data-name="login-passcode-assistance">
+					<div class="page">
+					  <div class="navbar"><div class="navbar-inner sliding"><div class="left"><a class="link back login-screen-close" @click="get_passcode__failed"><i class="icon icon-back"></i><span class="ios-only">Back</span></a></div><div class="title">Passcode Assistance</div></div></div>
+					  <div class="page-content">
+						<p class="block">Self-service or super-service, we want to help!</p>
+						<div class="list">
+							<ul>
+								<li><a data-goto="/passcode/create/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">account_circle</i><i class="icon f7-icons ios-only">person_fill</i></div><div class="item-inner"><div class="item-title">Create your passcode</div></div></a></li>
+								<li><a data-goto="/passcode/recover/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">lock</i><i class="icon f7-icons ios-only" style="font-size:22px;width:22px;height:22px;">lock_fill</i></div><div class="item-inner"><div class="item-title">Recover the lost passcode</div></div></a></li>
+								<li><a data-goto="/passcode/faqs/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">local_library</i><i class="icon f7-icons ios-only">book_fill</i></div><div class="item-inner"><div class="item-title">Read passcode FAQs</div></div></a></li>
+								<li><a data-goto="/passcode/help/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">help</i><i class="icon f7-icons ios-only">help_fill</i></div><div class="item-inner"><div class="item-title">Get help from support team</div></div></a></li>
+							</ul>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="login-screen login-screen-2">
+				<div class="view view-init" data-name="login-about-project-plus">
+					<div class="page">
+					  <div class="navbar"><div class="navbar-inner sliding"><div class="left"><a class="link back login-screen-close" @click="get_passcode__failed"><i class="icon icon-back"></i><span class="ios-only">Back</span></a></div><div class="title">About</div></div></div>
+					  <div class="page-content">
+						<p class="block">Learn more about PLUS and how it helps dot-com operations team impact business results with insight-driven innovation and cutting-edge technology.</p>
+						<div class="list">
+							<ul>
+								<li><a data-goto="/about/about-project-plus/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">info</i><i class="icon f7-icons ios-only">info_fill</i></div><div class="item-inner"><div class="item-title">About PLUS</div></div></a></li>
+								<li><a data-goto="/about/vision-and-mission/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">directions</i><i class="icon f7-icons ios-only">compass_fill</i></div><div class="item-inner"><div class="item-title">Vision & mission</div></div></a></li>
+								<li><a data-goto="/about/core-team-and-contributors/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">people</i><i class="icon f7-icons ios-only">persons</i></div><div class="item-inner"><div class="item-title">Core team & contributors</div></div></a></li>
+								<li><a data-goto="/about/platform-usage-and-stats/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">assessment</i><i class="icon f7-icons ios-only">graph_round_fill</i></div><div class="item-inner"><div class="item-title">Platform usage & stats</div></div></a></li>
+								<li><a data-goto="/about/version-history/" class="item-link item-content"><div class="item-media"><i class="icon material-icons md-only">local_library</i><i class="icon f7-icons ios-only">refresh_round_fill</i></div><div class="item-inner"><div class="item-title">Version history</div></div></a></li>
+							</ul>
+						</div>
+					  </div>
+					</div>
+				</div>
+			</div>
+
+
+
+        </div>
+
+    </div>
+
+</template>
+
+<style scoped>
+.user {
+	width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+}
+
+.user .align-items-center:nth-child(1) {
+    width: 100%;
+    max-width: 400px;
+    margin: auto auto 20px auto;
+}
+
+.user .text-align-center {
+    margin-bottom: auto;
+}
+
+.user-name {
+	font-size: 18px;
+    font-weight: 400;
+    padding-bottom: 50px;
+}
+
+.user-name small {
+	color: grey;
+}
+
+a.login-screen-open {
+	border-radius: 50%;
+	max-width: 52px;
+    max-height: 52px;
+	overflow: hidden;
+}
+
+a.login-screen-open i {
+    font-size: 26px;
+    padding: 13px;
+    color: #fff;
+}
+
+.warrior-image {
+	width: 160px;
+    height: 160px;
+}
+
+.user-cta-text{
+	padding: 0 0 10px 0;
+    font-size: 15px;
+	color: #333;
+}
+
+.user-cta-input{
+    font-size: 40px;
+	line-height: 30px;
+	color: #333;
+}
+
+
+
+
+.keypad {
+     padding: 0;
+     margin: auto 0 0 0;
+}
+
+.keypad .row:before,.keypad .border:before,.keypad .border:after{
+    content: '';
+    position: absolute;
+    background-color: rgba(0,0,0,.12);
+    display: table;
+    z-index: 15;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
+
+.keypad .border:before{
+	top:0;
+    height: 100%;
+    width: 1px;
+}
+
+.keypad .border:after{
+	top:0;
+	left: auto;
+    right:0;
+	height: 100%;
+    width: 1px;
+}
+
+.keypad .material-icons {
+     color: #757575!important;
+}
+
+.keypad .col-33 {
+     opacity: 1!important;
+     color: #000!important;
+     font-size: 28px;
+     line-height: 28px;
+     padding: 0;
+     background: #fff;
+     position: relative;
+     text-align: center;
+     cursor: pointer;
+     width: 33.333333333333336%!important;
+     width: -webkit-calc(100% / 3);
+     width: calc(100% / 3);
+     height: 60px;
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: -webkit-flex;
+     display: flex;
+     -webkit-box-orient: vertical;
+     -moz-box-orient: vertical;
+     -ms-flex-direction: column;
+     -webkit-flex-direction: column;
+     flex-direction: column;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     -webkit-justify-content: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     -webkit-align-items: center;
+     align-items: center;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     box-sizing: border-box;
+}
+
+.ios {{this}} .page-content {
+     background: #fff;
+	 padding: 0;
+}
+
+.ios {{this}} .keypad .button{
+	border-color:transparent;
+	border-radius:0!important;
+}
+
+.ios {{this}} .button.active-state{
+    background-color: rgba(0,0,0,.04);
+}
+</style>
+
+<script>
+var passcode = '';
+return {
+	data: function () {
+		return {
+			user_name: function(){
+				user_name = '.ComOps Project Plus';
+				try{
+				user_name = '+ ' + document.cookie.match(new RegExp('name=([^;]+)'))[1];
+				}catch(e){}
+				return user_name;
+			},
+			user_email: function(){
+				user_email = 'plus@jcp.com';
+				try{
+				user_email = document.cookie.match(new RegExp('email=([^;]+)'))[1];
+				}catch(e){}
+				return user_email;
+			},
+		}
+	},
+
+    on: {
+        pageInit: function(e, page) {
+
+			$('#app').off('click', '.key');
+			$(window).off('keydown', '');
+			
+            if(!app.device.name){if(app.device.desktop==true){app.device.name='browser'}else if(app.device.android==true){app.device.name='android'}else if(app.device.ios==true){app.device.name='ios'}else{app.device.name='browser'}}
+			
+			$(window).keydown(function(e){
+				key_code = e.keyCode;
+				if (app.device.desktop==false||$('.splash-screen').outerHeight(true)!=0||$('.login-screen.modal-in').length==1||$('.view-passcode').outerHeight(true)==0){return false}
+				if (key_code == 8 && $('.page-current .user-cta-input').text() != '○○○○○○' && $('.page-current .user-cta-input').text() != '●●●●●●') {
+					app.views['passcode'].router.currentPageEl.f7Component.methods.deleteKey()
+				} else if (((key_code >= 48 && key_code <= 57) || (key_code >= 96 && key_code <= 105)) && $('.page-current .user-cta-input').text() != '●●●●●●') {
+					key_name = '';
+					if (key_code == 48 || key_code == 96) {key_name = '0'} 
+					else if (key_code == 49 || key_code == 97) {key_name = '1'} 
+					else if (key_code == 50 || key_code == 98) {key_name = '2'} 
+					else if (key_code == 51 || key_code == 99) {key_name = '3'} 
+					else if (key_code == 52 || key_code == 100) {key_name = '4'} 
+					else if (key_code == 53 || key_code == 101) {key_name = '5'} 
+					else if (key_code == 54 || key_code == 102) {key_name = '6'}
+					else if (key_code == 55 || key_code == 103) {key_name = '7'} 
+					else if (key_code == 56 || key_code == 104) {key_name = '8'} 
+					else if (key_code == 57 || key_code == 105) {key_name = '9'}
+					app.views['passcode'].router.currentPageEl.f7Component.methods.captureKey(key_name)
+				}
+			});
+			
+			$('#app').click('.key', function(e){
+				app.views['passcode'].router.currentPageEl.f7Component.methods.captureKey($(this).text())
+			})
+
+			splashScreenStatus = 0;
+        },
+
+        pageBeforeIn: function(e, page) {
+            passcode = '';
+            $('.user-cta-input').text('○○○○○○');
+        },
+
+        pageAfterIn: function(e, page) {
+			
+			setCaptionInterval = setInterval(function(){
+				caption = $('.user-name small').text();
+				if(caption=='Work at ease and do more with less'){caption='Go realtime and predict the future'}
+				else if(caption=='Go realtime and predict the future'){caption='Become data and insight-driven'}
+				else if(caption=='Become data and insight-driven'){caption='Work from your mobile - iOS or Android'}
+				else if(caption=='Work from your mobile - iOS or Android'){caption='Work at ease and do more with less'}
+				$('.user-name small').text(caption);
+			}, 3000);
+
+			cookie_date = new Date();cookie_date.setTime(cookie_date.getTime() + (365 * 24 * 60 * 60 * 1000));
+
+			if(theme=='auto'){if($('html').hasClass('ios')){theme='ios'}else{theme='md'}}
+			document.cookie = 'theme=' + theme + ';expires=' + cookie_date.toUTCString();
+			if(theme!=app.theme){location.reload();return false;}
+
+			try{
+			newColor='color-theme-'+color;currentColor=$('#app').attr('class').match(/color-theme-([a-z]*)/)[0];
+			if(currentColor!=newColor){$('#app').addClass(newColor).removeClass(currentColor)}
+			}catch(e){}
+			document.cookie = 'color=' + color + ';expires=' + cookie_date.toUTCString();
+
+			$('#app').addClass('color-theme-'+color);
+
+
+			isChrome = !!window.chrome && !!window.chrome.webstore;
+			if(!isChrome){
+				app.views['passcode'].router.navigate('/compatibility-check/');
+			}
+            else if (app.form.getFormData("passcode") && app.form.getFormData("passcode").hash.split('@')[1].split(' ')[0] == new Date().toIsoString()) {
+                app.views['passcode'].router.currentPageEl.f7Component.methods.local_passcode__success();
+            } else {
+				localStorage.clear();
+                setTimeout(function() {$('.splash-screen').hide();}, 1234);
+            }
+        },
+		
+    },
+
+    methods: {
+		showKeyboardInfo: function(){
+			app.dialog.alert('Use number keys to enter your passcode and delete key on the bottom right corner to delete wrong input.', 'PLUS keyboard');
+		},
+        captureKey: function(key) {
+			passcode = passcode + key;
+            $('.user-cta-input').text($('.user-cta-input').text().replace('○', '●'));
+            if (passcode.length == 6){
+                http_api__post({methods:'passcode',goto:'passcode',onAlertCallback:'get_passcode__failed'},'silent', {progress: 'Authenticating..', todo: 'get_passcode', passcode: passcode});
+            }
+        },
+        deleteKey: function() {
+            passcode = passcode.slice(0, -1);
+            $('.user-cta-input').text($('.user-cta-input').text().replace(/\●([^\●]*)$/, '○' + '$1'));
+        },
+        get_passcode__failed: function() {
+            passcode = '';
+            $('.user-cta-input').text('○○○○○○');
+			app.dialog.close();
+        },
+        get_passcode__success: function(view,arguments) {
+            localStorage.clear();
+            try {
+				var keys = Object.keys(arguments);
+                for (var i = 0; i < keys.length; i++) {
+                    key = keys[i];
+                    data = arguments[key];
+                    app.form.storeFormData(key, data)
+                }
+                $('.dialog-title').text('Authentication success!');
+                setTimeout(function(){app.views['passcode'].router.currentPageEl.f7Component.methods.local_passcode__success();},1000);
+            } catch (e) {
+                app.dialog.alert('Your PLUS account is being renewed. Please retry after sometime.', 'Sorry!');
+				app.views['passcode'].router.currentPageEl.f7Component.methods.get_passcode__failed();
+            }
+        },
+        local_passcode__success: function() {
+            try {
+
+                for (var i = 0; i < localStorage.length; i++) {
+                    key = localStorage.key(i).replace('f7form-', '');
+                    data = app.form.getFormData(key);
+
+                    var fields = Object.keys(data);
+                    app.data[key] = {};
+                    for (var x = 0; x < fields.length; x++) {
+                        app.data[key][fields[x]] = data[fields[x]];
+                    }
+
+                }
+
+				cookie_date = new Date();cookie_date.setTime(cookie_date.getTime() + (365 * 24 * 60 * 60 * 1000));
+
+				theme=app.data.settings.theme;
+				if(theme=='auto'){if($('html').hasClass('ios')){theme='ios'}else{theme='md'}}
+				document.cookie = 'theme=' + theme + ';expires=' + cookie_date.toUTCString();
+				if(theme!=app.theme){location.reload();return false;}
+				
+				color=app.data.settings.color;
+				try{
+				newColor='color-theme-'+color;currentColor=$('#app').attr('class').match(/color-theme-([a-z]*)/)[0];
+				if(currentColor!=newColor){$('#app').addClass(newColor).removeClass(currentColor)}
+				}catch(e){}
+				document.cookie = 'color=' + color + ';expires=' + cookie_date.toUTCString();
+				
+				$('#app').addClass('color-theme-'+color);
+
+				document.cookie = 'email=' + app.data.warrior.email + ';expires=' + cookie_date.toUTCString();
+				document.cookie = 'name=' + app.data.warrior.name + ';expires=' + cookie_date.toUTCString();
+
+				$('.dialog-title').text('Preparing user interface..');
+				app.views.create('.view-left',{url:'/panel-left/',name:'left'});
+				app.views.create('.view-main',{url:'/dashboards/',name:'center'});
+				app.views.create('.view-right',{url:'/modules/',name:'right'});
+
+				$(window).trigger('resize');
+
+				toastBottom = app.toast.create({
+					text: 'Welcome back, ' + app.data.warrior.name + '! Let\'s work at ease.',
+					closeTimeout: 4000,
+					position: 'bottom',
+				});
+
+				setTimeout(function(){
+					$('.splash-screen').hide();$('.view-passcode').hide();toastBottom.open();app.dialog.close();app.views['passcode'].router.currentPageEl.f7Component.methods.get_passcode__failed();
+					document.title = app.data.warrior.name;
+				},3000);
+
+            } catch (e) {
+                console.log(e)
+                app.dialog.alert('Your PLUS account is being renewed. Please retry after sometime.', 'Sorry!');
+				app.views['passcode'].router.currentPageEl.f7Component.methods.get_passcode__failed();
+            }
+
+        },
+
+    },
+}
+</script>
